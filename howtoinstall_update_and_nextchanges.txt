@@ -1,0 +1,115 @@
+                      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                             EPANET-OCTAVE
+
+                       Antonio Vigueras Rodriguez
+                      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1 TODO Crear función ENopenHoginitH
+2 TODO ENgetnodetype ENgetnodevalue
+3 TODO Papeles Jornada Técnica
+4 INSTRUCCIONES instalación
+.. 4.1 Checkout/download package (en la carpeta donde lo queremos)
+.. 4.2 Comprobar que las librerias dinámicas en /usr/local/lib/ se enlazan
+.. 4.3 Crear una carpeta en /usr/local/lib y copiar las librerias
+.. 4.4 Dentro de Octave
+.. 4.5 Usarlo
+5 Instrucciones actualización
+.. 5.1 Actualizar repositorio
+.. 5.2 Recompilar ficheros oct dentro de Octave
+
+
+1 TODO Crear función ENopenHoginitH
+═══════════════════════════════════
+
+  Las dos cosas a la vez para evitar bug de hacer run sin haber hecho
+  initH previamente
+
+
+2 TODO ENgetnodetype ENgetnodevalue
+═══════════════════════════════════
+
+  Detectar si lo introducido no es un entero (e.g. string) y dar error
+  sin pasar a ocENget… para evitar cuelgue
+
+
+3 TODO Papeles Jornada Técnica
+══════════════════════════════
+
+
+4 INSTRUCCIONES instalación
+═══════════════════════════
+
+4.1 Checkout/download package (en la carpeta donde lo queremos)
+───────────────────────────────────────────────────────────────
+
+  `svn co https://forja.rediris.es/svn/epanet-octave .'
+
+
+4.2 Comprobar que las librerias dinámicas en /usr/local/lib/ se enlazan
+───────────────────────────────────────────────────────────────────────
+
+  ┌────
+  │ cat /etc/ld.so.conf.d/libc.conf
+  └────
+  Su salida debe incluir `/usr/local/lib', por ejemplo:
+  ┌────
+  │ # libc default configuration
+  │ /usr/local/lib
+  └────
+
+
+4.3 Crear una carpeta en /usr/local/lib y copiar las librerias
+──────────────────────────────────────────────────────────────
+
+  Atención sustituye en el código siguiente `$OCTAVE_EPANET_PATH' por su
+  posición por ejemplo /home/antonio/epanet-octave Alternativamente
+  puedes crear la variable `OCTAVE_EPANET_PATH' mediante una instrucción
+  como `OCTAVE_EPANET_PATH=$HOME/Documents/epanet/epanet/epanet-octave'
+  que indique donde se ha descargado el programa.
+  ┌────
+  │ #sudo mkdir /usr/local/lib/epanet-octave
+  │ sudo ln -s $OCTAVE_EPANET_PATH/*.so* /usr/local/lib/ #epanet-octave/
+  │ sudo ldconfig # para actualizar el cache de librerias din a tener en cuenta
+  │ sudo ldconfig /usr/local/lib/epanet-octave/ #no necesario pero ayuda a detectar fallos
+  └────
+
+
+4.4 Dentro de Octave
+────────────────────
+
+  ┌────
+  │ cd $OCTAVE_EPANET_PATH/private # Se puede hacer con el navegador del octave
+  │ compile_every_cc
+  └────
+
+
+4.5 Usarlo
+──────────
+
+  Se puede usar desde la carpeta `$OCTAVE_EPANET_PATH' o bien añadir
+  dicha carpeta al path de octave para poder utilizarlo desde cualquier
+  sitio
+
+
+5 Instrucciones actualización
+═════════════════════════════
+
+5.1 Actualizar repositorio
+──────────────────────────
+
+  Con el programa gráfico que se use de subversion o en modo texto,
+  yendo a la carpeta epanet-octave y tecleando `svn update'
+
+
+5.2 Recompilar ficheros oct dentro de Octave
+────────────────────────────────────────────
+
+  Desde la carpeta epanet-octave
+  ┌────
+  │ cd private # Se puede hacer con el navegador del octave
+  │ compile_every_cc
+  └────
