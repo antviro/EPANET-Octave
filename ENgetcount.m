@@ -32,7 +32,9 @@
 
 function [number, errorcode] = ENgetcount(countcode)
   if ischar(countcode),
+    # Convert the string to upper case
     countcode=toupper(countcode);
+    # Use a switch statement to convert the string to the corresponding number
     switch countcode,
       case "EN_NODECOUNT"
         countcode = 0;
@@ -47,17 +49,21 @@ function [number, errorcode] = ENgetcount(countcode)
       case "EN_CONTROLCOUNT"
         countcode = 5;
       otherwise
+        # Raise an error if the string does not match any of the specified types
         error("El texto introducido no se corresponde con ninguna propiedad de nodo")
     endswitch
-
+    # Call the ToolKit ENgetcount function to count the number of network components
     [number,errorcode] = ocENgetcount(countcode);
     
   else
     if  length(countcode)==1,
+      # If the input is a vector or matrix with length 1, call the ocENgetcount function
       [number,errorcode] = ocENgetcount(countcode);
     elseif length(countcode)>1,
+      # If the input is a vector or matrix with length greater than 1, apply the TK ENgetcount function to each element of the vector or matrix
       [number,errorcode] = arrayfun ("ocENgetcount",countcode);
     else
+      # If the input is not a vector or matrix, return empty outputs
       number=[];
       errorcode=[];
     endif
