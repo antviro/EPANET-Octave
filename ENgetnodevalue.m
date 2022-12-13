@@ -16,7 +16,7 @@
 ## -*- texinfo -*-
 ## @deftypefn {Function File} {[@var{value},@var{errorcode}] =} ENgetnodevalue(@var{id},@var{param})
 ## Gets the value in a node@.@*
-## It can be run vectorized where nodeid would be a string cell array, whereas index and errorcode are returned as arrays nodeid ={"n1","n5"} --> index and errorcode would be 1x2 arrays@.@*
+## It can be run vectorized where nodeid would be a string cell array, whereas index and errorcode are returned as arrays nodeid =@{"n1","n5"@} --> index and errorcode would be 1x2 arrays@.@*
 ## Outputs:@*
 ## @var{value} is the value we wanteed to obtain@.@*
 ## @var{errorcode} can also be retrieved@.@*
