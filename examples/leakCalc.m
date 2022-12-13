@@ -1,4 +1,13 @@
-ENopen("redM.inp")
+## -*- texinfo -*-
+## Example which on the one hand get all nodes with consumption,
+## and on the other hand introduce a leak modelled as an emitter
+## in one of the nodes, running the simulation and getting
+## time series of the leakage flow rate as well as its max
+## and average value
+
+
+
+Enopen("redM.inp")
 ENopenHoginitH(0)
 hydrantnode="52";
 allNodes=ENgetnodeid([]);
