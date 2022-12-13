@@ -16,7 +16,7 @@
 ## -*- texinfo -*-
 ## @deftypefn {Function File} {[@var{value},@var{errorcode}] =} ENgetpatternvalue(@var{id}, @var{period})
 ## Gets the multiplier factor for a specific time period in a time  pattern.
-## It can be run vectorized where nodeid would be a string cell array, whereas index and errorcode are returned as arrays nodeid ={"n1","n5"} --> index and errorcode would be 1x2 arrays
+## It can be run vectorized where nodeid would be a string cell array, whereas index and errorcode are returned as arrays nodeid =@{"n1","n5"@} --> index and errorcode would be 1x2 arrays
 ## Outputs:
 ## @var{value} is the multiplier factor for a specific time period in a time  pattern.
 ## @var{errorcode} can also be retrieved
