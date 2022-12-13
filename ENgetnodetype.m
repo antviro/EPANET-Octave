@@ -14,7 +14,7 @@
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@var{typecode},@var{errorcode},@var{stype =} ENgetnodevalue(@var{id})
+## @deftypefn {Function File} {@var{typecode},@var{errorcode},@var{stype} =} ENgetnodevalue(@var{id})
 ## Runs a step of hydraulic simulation.
 ## Outputs:
 ## @var{typecode} is the code of the type of node
