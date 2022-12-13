@@ -14,7 +14,7 @@
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@var{typecode},@var{errorcode},@var{stype =} ENgetlinkvalue(@var{id})
+## @deftypefn {Function File} {@var{typecode},@var{errorcode},@var{stype} =} ENgetlinkvalue(@var{id})
 ## Gets the text id of a link (or several links)
 ## Outputs:
 ## @var{typecode} is the code of the type of link
