@@ -74,7 +74,7 @@ Table of Contents
   │ #sudo mkdir /usr/local/lib/epanet-octave
   │ sudo ln -s $OCTAVE_EPANET_PATH/*.so* /usr/local/lib/ #epanet-octave/
   │ sudo ldconfig # para actualizar el cache de librerias din a tener en cuenta
-  │ sudo ldconfig /usr/local/lib/epanet-octave/ #no necesario pero ayuda a detectar fallos
+  │ #sudo ldconfig /usr/local/lib/epanet-octave/ #no necesario pero ayuda a detectar fallos
   └────
 
 
