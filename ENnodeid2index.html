@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="date" content="2022-12-13" />
+  <meta name="generator" content="generate_html 0.3.3" />
+  <title>ENnodeid2index</title>
+</head>
+<body>
+<dl>
+<dt id="index-ENnodeid2index_0028cellids_002c">Function File: <em><var>index</var> =</em> <strong>ENnodeid2index(<var>cellids</var>,</strong> <em><var>id</var>)</em></dt>
+<dd><p>Get the ids of all the nodes parting from a cellarray of sortered index (obtained previously with ENgetnodeid([]), e.g. allNodes = ENgetnodeid([]); ENnodeid2index(allNodes,identificacionnodo).
+It also works with links (actually, it is just a copy of it replacing &quot;link&quot; with &quot;node&quot;)
+for making code easier to read. It returns 0 when a id is not found.
+It can run with EPANET Toolkit closed
+<var>index</var> is an integer which is the index of the node
+Outputs:
+<var>id</var> is a string with the node identifier, it should be a string variable containing the string and not the string itself. No idea of why it cause problem the later...
+It can be run vectorized where id would be a string cell array, in case index is an array
+</p>
+<p><strong>See also:</strong> ENgetnodeid, ENgetnodevalue, ENsetnodevalue.
+</p></dd></dl>
+</body>
+</html>

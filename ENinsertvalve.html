@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="date" content="2022-12-13" />
+  <meta name="generator" content="generate_html 0.3.3" />
+  <title>ENinsertvalve</title>
+</head>
+<body>
+<dl>
+<dt id="index-ENinsertvalve_0028fileinp_002c">Function File: <em><var>codigodeerrorsinimplementar</var> =</em> <strong>ENinsertvalve(<var>fileinp</var>,</strong> <em><var>idpipe</var>,<var>typeofvalve</var>,<var>valve_settings</var>,<var>valve_minorlosses</var>)</em></dt>
+<dd><p>Inputs.<br>
+<var>fileinp</var>.<br>
+<var>idpipe</var> is the pipe index or pipe id (not vectorized at the moment).<br>
+<var>typeofvalve</var>
+It can be either a string of a number:
+EN_PRV 3 Pressure Reducing Valve.<br>
+EN_PSV 4 Pressure Sustaining Valve.<br>
+EN_PBV 5 Pressure Breaker Valve.<br>
+EN_FCV 6 Flow Control Valve.<br>
+EN_TCV  7 Throttle Control Valve.<br>
+EN_GPV 8 General Purpose Valve.<br>
+<var>valve_settings</var> is the variable with the settings of the valve (it depends on valve type, see EPANET manual).<br>
+<var>valve_minorlosses</var> is the minor losses coefficient of the valve..<br>
+voy por aqui en descripcion.<br>
+En una segunda version habria que introducir algo por si se usa dos veces en la misma tuberia por error o no. Y de tener coordenadas el inp estaria bien meter la valvula a 1/20 de la tuberia para poder visualizarla si se considera interesante.<br>
+Outputs:.<br>
+<var>id</var> is a string with the node identifier, it should be a string variable containing the string and not the string itself. No idea of why it cause problem the later...
+It can be run vectorized where id would be a string cell array, in case index is an array
+<var>errorcode</var> can also be retrieved.<br>
+</p>
+<p><strong>See also:</strong> ENgetnodeid, ENgetnodevalue, ENsetnodevalue.
+</p></dd></dl>
+</body>
+</html>

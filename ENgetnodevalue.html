@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="date" content="2022-12-13" />
+  <meta name="generator" content="generate_html 0.3.3" />
+  <title>ENgetnodevalue</title>
+</head>
+<body>
+<dl>
+<dt id="index-ENgetnodevalue_0028id_002cparam_0029">Function File: <em>[<var>value</var>,<var>errorcode</var>] =</em> <strong>ENgetnodevalue(<var>id</var>,<var>param</var>)</strong></dt>
+<dd><p>Gets the value in a node.<br>
+It can be run vectorized where nodeid would be a string cell array, whereas index and errorcode are returned as arrays nodeid ={&quot;n1&quot;,&quot;n5&quot;} &ndash;&gt; index and errorcode would be 1x2 arrays.<br>
+Outputs:<br>
+<var>value</var> is the value we wanteed to obtain.<br>
+<var>errorcode</var> can also be retrieved.<br>
+Inputs:<br>
+<var>id</var> is the integer index of the node (can be a vector/matrix). If no node is specified all nodes value are retrieved e.g. ENgetnodevalue ([],10).<br>
+<var>param</var> is the parameter to be measured it can be a string or an integer:<br>
+&quot;EN_ELEVATION&quot; 0<br>                               
+&quot;EN_BASEDEMAND&quot; 1<br>                               
+&quot;EN_PATTERN&quot; 2     <br>                             
+&quot;EN_EMITTER&quot; 3 # Emitter coeff.                  <br>
+&quot;EN_INITQUAL&quot; 4 # Initial quality                 <br>
+&quot;EN_SOURCEQUAL&quot; 5 # Source quality               <br>
+&quot;EN_SOURCEPAT&quot; 6#Source pattern index              <br>     
+&quot;EN_SOURCETYPE&quot; 7# Source type                 <br>
+&quot;EN_TANKLEVEL&quot; 8 # Initial water level in tank   <br>     
+&quot;EN_DEMAND&quot; 9# Actual demand                   <br>
+&quot;EN_HEAD&quot;10# Hydraulic head              <br>
+&quot;EN_PRESSURE&quot;11# Pressure                  <br>
+&quot;EN_QUALITY&quot;12# Actual quality               <br>      
+&quot;EN_SOURCEMASS&quot;13# Mass flow rate per minute of a chemical source       <br>
+&quot;EN_CONCEN&quot; 0<br>
+&quot;EN_MASS&quot; 1<br>
+&quot;EN_SETPOINT&quot; 2<br>
+&quot;EN_FLOWPACED&quot; 3<br>
+</p>
+<p><strong>See also:</strong> ENgetnodeid, ENgetnodevalue, ENsetnodevalue.
+</p></dd></dl>
+</body>
+</html>

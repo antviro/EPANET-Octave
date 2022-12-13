@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="date" content="2022-12-13" />
+  <meta name="generator" content="generate_html 0.3.3" />
+  <title>ENsetlinkvalue</title>
+</head>
+<body>
+<dl>
+<dt id="index-ENsetlinkvalue_0028id_002cparam_002cvalue_0029">Function File: <em>[<var>errorcode</var>] =</em> <strong>ENsetlinkvalue(<var>id</var>,<var>param</var>,<var>value</var>)</strong></dt>
+<dd><p>Sets the value in a link.<br>
+Outputs:<br>
+<var>errorcode</var> can also be retrieved.<br>
+Inputs:<br>
+<var>id</var> is the integer index of the link (can be a vector/matrix). If no link is specified all links value are retrieved e.g. ENsetlinkvalue ([],10).<br>
+<var>param</var> is the parameter to be measured it can be a string or an integer:<br>
+EN_DIAMETER 0<br>
+EN_LENGTH 1<br>
+EN_ROUGHNESS 2 <br>
+EN_MINORLOSS 3 minor loss coef<br>
+EN_INITSTATUS 4 initial link status (0= closed, 1=open)<br>
+EN_INITSETTING 5 initial pipe roughness, pump speed or valve setting<br>
+EN_KBULK 6 bulk reaction coef.<br>
+EN_KWALL 7 wall reaction coef.<br>
+EN_STATUS 11 current link status (0= closed, 1=open)<br>
+EN_SETTING 12 roughness, pump speed or valve setting<br>
+<var>value</var> is the values we want to set it should have the same size of id (if id is empty then it should be a vector with one value for each link.
+</p>
+<p><strong>See also:</strong> ENsetlinkid, ENsetlinkvalue, ENsetlinkvalue.
+</p></dd></dl>
+</body>
+</html>
