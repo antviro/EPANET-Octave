@@ -17,7 +17,7 @@
 ## @deftypefn {Function File} {@var{index},@var{errorcode} =} ENgetpatternindex(@var{patternid})
 ## Runs a step of hydraulic simulation.
 ## @var{patternid} is a string with the pattern identifier, it should be a string variable containing the string and not the string itself. No idea of why it cause problem the later...
-## It can be run vectorized where patternid would be a string cell array, whereas index and errorcode are returned as arrays patternid ={"n1","n5"} --> index and errorcode would be 1x2 arrays
+## It can be run vectorized where patternid would be a string cell array, whereas index and errorcode are returned as arrays patternid =@{"n1","n5"@} --> index and errorcode would be 1x2 arrays
 ## Outputs:
 ## @var{index} is an integer which is the index of the pattern
 ## @var{errorcode} can also be retrieved
