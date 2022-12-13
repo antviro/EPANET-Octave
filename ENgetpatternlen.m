@@ -16,7 +16,7 @@
 ## -*- texinfo -*-
 ## @deftypefn {Function File} {[@var{len},@var{errorcode}] =} ENgetpatternlen(@var{id})
 ## Gets the number of time periods in a specific time pattern.
-## It can be run vectorized where nodeid would be a string cell array, whereas index and errorcode are returned as arrays nodeid ={"n1","n5"} --> index and errorcode would be 1x2 arrays
+## It can be run vectorized where nodeid would be a string cell array, whereas index and errorcode are returned as arrays nodeid =@{"n1","n5"@} --> index and errorcode would be 1x2 arrays
 ## Outputs:
 ## @var{len} is the length we wanteed to obtain
 ## @var{errorcode} can also be retrieved
