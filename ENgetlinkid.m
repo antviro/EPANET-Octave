@@ -28,7 +28,7 @@ function [id,errorcode] = ENgetlinkid(index)
   if  length(index)==1,
     [id,errorcode] = ocENgetlinkid(index);
   elseif length(index)>1,
-    [id,errorcode] = cellfun ("ocENgetlinkid",index);
+    [id,errorcode] = arrayfun ("ocENgetlinkid",index,"UniformOutput", false);
   else #index =[]
     # all links retrieved
     index =1:ENgetcount(2);
