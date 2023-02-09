@@ -1,19 +1,56 @@
+%SST Name
+SST="condesbarcelona_avchurra"
+
+%Boolean variables
+LOAD_INPUT_DATA_FROM_SCRIPT = 1
+GRAPHICAL_OUTPUT = 1;
+CLOSE_TOOLKIT =1;
+%% SST_NODES_PATTERN_SELECTION = 1;
+%% all subsector/sector nodes have the same consumption patterns
+%% if not they could be selected in a GIS program and introduced
+%% as input
+OPEN_VALVES = 1; % 0 is under the exp. test conditions 
+
+if ~LOAD_INPUT_DATA_FROM_SCRIPT,
+  %%%
+  INPfile =	"160623reducidoV1_sl3LC.inp";
+  % INP file prepared under test conditions (it can also be done in EpanetTK)
+	pattern_name =	"AVChurra_CondesBCN";	
+	links_input_output_SST =	{"Q769",	"Q770",	"V257",	"V256",	"V192"};
+	input_or_output =	[1	1	-1	-1	1];
+  %% 1 means flow rate entering the SST is positive, -1 if negative. One number for each inlet link defined in links_input_output_SST
+  KNOWN_DIRECTIONS = 1	;	 %If 0 absolute value of Q is plotted --its direction should be checked--
+	if OPEN_VALVES,						
+		INPfile = "160721RedMurcia.inp";	%general INP file of the city under normal situation				
+		load(cstrcat('lista_nodos_',SST,'.octave'));
+ % under normal situation the selection of nodes can be loaded from the previous simulation
+ % with OPEN_VALVES = 0
+ % or alternatively from a GIS generated list (in case pattern is now linked to ST instead of to SST)
+ %
+ % This is only needed if one wants to keep different label names in Assets DB and in EPANET, usually
+ % it can be kept empty to deactivate it
+    correction_table=[];
+    correction_table_links_input_output=[];
+
+else,
 %%% We load input data
-input_buscando_presiones_minimas_V2
+  input_searching_minimum_pressures
+  % This file should include a switch depending on SST just defining the previous input variable for each case studie, so that choosing one or another just needs to change the first variables in this file.
+endif
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%% This block is only needed if label names in EPANET and out are different %%%%%%%%%%%%
-%%%%%%%%%%%%%%%%% In such a case, tablacorreccion and tablacorreccion_links_input_output are the %%%%%%
+%%%%%%%%%%%%%%%%% In such a case, correction_table and correction_table_links_input_output are the %%%%%%
 %%%%%%%%%%%%%%%%% variables used for that purpose --they are loaded before here-- %%%%%%%%%%%%%%%%%%%%%
 if OPEN_VALVES,
-  for icorr=1:length(tablacorreccion)
-    lista_id_nodos.(SST){find(strcmp(lista_id_nodos.(SST), tablacorreccion{icorr}{1}))} = tablacorreccion{icorr}{2};
+  for icorr=1:length(correction_table)
+    lista_id_nodos.(SST){find(strcmp(lista_id_nodos.(SST), correction_table{icorr}{1}))} = correction_table{icorr}{2};
   endfor
 
-  for icorr=1:length(tablacorreccion_links_input_output)
-    indicelista_icorr =    find(strcmp(links_input_output_SST, tablacorreccion_links_input_output{icorr}{1}));
+  for icorr=1:length(correction_table_links_input_output)
+    indicelista_icorr =    find(strcmp(links_input_output_SST, correction_table_links_input_output{icorr}{1}));
     if length(indicelista_icorr)==1,
-      links_input_output_SST{indicelista_icorr} = tablacorreccion_links_input_output{icorr}{2};
+      links_input_output_SST{indicelista_icorr} = correction_table_links_input_output{icorr}{2};
     endif
     
   endfor
@@ -22,7 +59,7 @@ endif
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%
-opening_error = ENopen(ficheroINP)
+opening_error = ENopen(INPfile)
 if opening_error==302,
   error("Epanet Toolkit was not closed properly, try to close it, although it may hang Octave")
 endif
@@ -52,15 +89,15 @@ else
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % We select nodes with the selected Pattern and a non-null base demand
-%% ENpatternid2index
-iPattern = ENnodeid2index(allPatterns, nombre_patron);
-nodesPattern = ENgetnodevalue([],"EN_PATTERN");
-nodesBaseDemand=ENgetnodevalue([],"EN_BASEDEMAND");
+  %% ENpatternid2index
+  iPattern = ENnodeid2index(allPatterns, pattern_name);
+  nodesPattern = ENgetnodevalue([],"EN_PATTERN");
+  nodesBaseDemand=ENgetnodevalue([],"EN_BASEDEMAND");
 
-nodeList = find(nodesPattern==iPattern & nodesBaseDemand >0);
+  nodeList = find(nodesPattern==iPattern & nodesBaseDemand >0);
 % nodes with no demand are removed from the list (it is not necessary to achieve the minimum pressure/head if there is no consumers)
-lista_id_nodos.(SST)  = allNodes (nodeList );
-save(cstrcat('lista_nodos_',SST,'.octave'),"lista_id_nodos");
+  lista_id_nodos.(SST)  = allNodes (nodeList );
+  save(cstrcat('lista_nodos_',SST,'.octave'),"lista_id_nodos");
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -102,7 +139,7 @@ id_Node_minHead = {allNodes{iNode_minHead}};
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%% This block is just to produce graphical output, if required.%%%%%%%%%%%
-if DIBUJO,
+if GRAPHICAL_OUTPUT,
   figure(1)
   subplot(2,1,1)
   plot(t/3600,minP); 
@@ -117,7 +154,7 @@ if DIBUJO,
   ylabel('pmin (m)')
   hold off
   subplot(2,1,2)
-  if CONOCEMOS_SENTIDOS,
+  if KNOWN_DIRECTIONS,
     plot(t/3600,QList.*input_or_output);grid on;
   else
       plot(t/3600,abs(QList));grid on;
@@ -143,7 +180,7 @@ if DIBUJO,
   ylabel('head (m)')
   hold off
   subplot(2,1,2)
-  if CONOCEMOS_SENTIDOS,
+  if KNOWN_DIRECTIONS,
     plot(t/3600,QList.*input_or_output);grid on;
   else
       plot(t/3600,abs(QList));grid on;
@@ -162,12 +199,12 @@ endif
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %saving main results in matlab compatible file 
-save(cstrcat("minP_y_Q_",SSTlabel,"_",str_open_valves, ".mat"),"-V7","minP","iNode_minP","minHead","iNode_minHead","QList","t","id_Node_minP","ficheroINP","SST","SSTlabel","OPEN_VALVES","str_open_valves","linkStatus_registered","linkStatus_simulated");
+save(cstrcat("minP_y_Q_",SSTlabel,"_",str_open_valves, ".mat"),"-V7","minP","iNode_minP","minHead","iNode_minHead","QList","t","id_Node_minP","INPfile","SST","SSTlabel","OPEN_VALVES","str_open_valves","linkStatus_registered","linkStatus_simulated");
 
 
 
 %We close the simulation and the toolkit
-if CIERRA_TOOLKIT,
+if CLOSE_TOOLKIT,
   closing_error = ENcloseH();
   closing_error = ENclose();
 end
