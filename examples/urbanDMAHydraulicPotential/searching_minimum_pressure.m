@@ -31,7 +31,7 @@ if ~LOAD_INPUT_DATA_FROM_SCRIPT,
  % it can be kept empty to deactivate it
     correction_table=[];
     correction_table_links_input_output=[];
-
+  endif
 else,
 %%% We load input data
   input_searching_minimum_pressures
