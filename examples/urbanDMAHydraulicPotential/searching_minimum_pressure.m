@@ -58,6 +58,7 @@ nodesPattern = ENgetnodevalue([],"EN_PATTERN");
 nodesBaseDemand=ENgetnodevalue([],"EN_BASEDEMAND");
 
 nodeList = find(nodesPattern==iPattern & nodesBaseDemand >0);
+% nodes with no demand are removed from the list (it is not necessary to achieve the minimum pressure/head if there is no consumers)
 lista_id_nodos.(SST)  = allNodes (nodeList );
 save(cstrcat('lista_nodos_',SST,'.octave'),"lista_id_nodos");
 end
