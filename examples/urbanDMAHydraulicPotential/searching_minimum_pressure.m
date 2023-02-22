@@ -4,12 +4,15 @@ SST="condesbarcelona_avchurra"
 %Boolean variables
 LOAD_INPUT_DATA_FROM_SCRIPT = 0
 GRAPHICAL_OUTPUT = 1;
+COMPUTE_HP_POTENTIAL_AEP = 0
 CLOSE_TOOLKIT =1;
 %% SST_NODES_PATTERN_SELECTION = 1;
 %% all subsector/sector nodes have the same consumption patterns
 %% if not they could be selected in a GIS program and introduced
 %% as input
 OPEN_VALVES = 1; % 0 is under the exp. test conditions 
+required_pressure = 25; % required pressure in m.
+valid_time = [] %[],[8, 23]*60*60 if empty no exclusion hours other wise it should be an interval initial time - final time in seconds (or hours*60*60)
 
 if ~LOAD_INPUT_DATA_FROM_SCRIPT,
   %%%
@@ -195,7 +198,32 @@ if GRAPHICAL_OUTPUT,
 endif
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+if compute_hp_potential_aep,
+%Interpolate time series
+  time_s = t(1):1:t(end);
+  minP_s = interp1(t, minP,time_s);
+  QList_s = interp1(t,QList, time_s).*input_or_output; %positive (flow rate entering the sector, otherwise the potential minimum pressure could be out of the DMA!)
+    
+%filter out excluded times
+  if length(valid_time)>0,
+    included_indexes = time_s>=valid_time(1) & time_s<valid_time(2);
+    time_s = time_s(included_indexes);
+    minP_s = minP_s(included_indexes);
+    QList_s = QList_s(included_indexes,:);
+  endif
+  
+%Power (t) 1: instantaneous available Hn 2: minimum available Hn (in the valid time)
+  power_s_1 = 9.81*(minP_s-required_pressure)'.*QList_s; %kW (rho=1e3 kg/m3)
+  power_s_2 = 9.81*(min(minP_s)-required_pressure)'.*QList_s; %kW (rho=1e3 kg/m3)
+%Eday1 and Eday2
+  Eday1 = sum(power_s_1) * 1/60/60; % kWh (1/60/60 hour of each step 1s->h)
+  Eday2 = sum(power_s_2) * 1/60/60;
+%AEP1, AEP2
+  AEP_1 = Eday1* 365.25; % kWh
+  AEP_2 = Eday2* 365.25; % kWh
+%save estimation
+  save(cstrcat("AEP_",SSTlabel,"_",str_open_valves, ".mat"),"-V7","time_s","power_s_1","power_s_2","Eday1","Eday2","AEP_1","AEP_2","links_input_output_SST");
+endif
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %saving main results in matlab compatible file 
