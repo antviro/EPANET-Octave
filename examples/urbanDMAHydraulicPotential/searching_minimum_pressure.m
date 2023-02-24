@@ -13,6 +13,8 @@ CLOSE_TOOLKIT =1;
 OPEN_VALVES = 1; % 0 is under the exp. test conditions 
 required_pressure = 25; % required pressure in m.
 valid_time = [] %[],[8, 23]*60*60 if empty no exclusion hours other wise it should be an interval initial time - final time in seconds (or hours*60*60)
+unit_change_to_cmps = 1/60/60; %for energy calculation factor to change flow rate unit to m3/s
+% 1/3600 as it is in m3 per hour
 
 if ~LOAD_INPUT_DATA_FROM_SCRIPT,
   %%%
@@ -198,11 +200,11 @@ if GRAPHICAL_OUTPUT,
 endif
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if compute_hp_potential_aep,
+if COMPUTE_HP_POTENTIAL_AEP,
 %Interpolate time series
   time_s = t(1):1:t(end);
   minP_s = interp1(t, minP,time_s);
-  QList_s = interp1(t,QList, time_s).*input_or_output; %positive (flow rate entering the sector, otherwise the potential minimum pressure could be out of the DMA!)
+  QList_s = interp1(t,QList, time_s).*input_or_output * unit_change_to_cmps; %positive (flow rate entering the sector, otherwise the potential minimum pressure could be out of the DMA!)
     
 %filter out excluded times
   if length(valid_time)>0,
