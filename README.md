@@ -1,4 +1,10 @@
-# Function File: _errorcode =_ **ENcloseH** _( )_
+# Table of contents
+1. [Code description] (#EPANET-Octave-code)
+2. [Examples] (#Examples)
+3. [Instalation and issues] (#Instalation-and-issues)
+
+# EPANET-Octave code
+## Function File: _errorcode =_ **ENcloseH** _( )_
 
     
 
@@ -7,7 +13,7 @@ an error code.
 
 **See also:** ENinitH, ENrunH, ENnextH, ENopenH.
 
-# Function File: _errorcode =_ **ENopen** _()_
+## Function File: _errorcode =_ **ENopen** _()_
 
     
 
@@ -15,7 +21,7 @@ Closes the Epanet Toolkit (with ENclose.c). It returns an error code.
 
 **See also:** ENopen.
 
-# Function File: _errorcode =_ **ENcloseQ** _( )_
+## Function File: _errorcode =_ **ENcloseQ** _( )_
 
     
 
@@ -24,7 +30,7 @@ returns an error code.
 
 **See also:** ENinitH, ENrunH, ENnextH, ENopenH.
 
-# Function File: _errorcode =_ **ENepanet** _( fileinp, filereport, filebin)_
+## Function File: _errorcode =_ **ENepanet** _( fileinp, filereport, filebin)_
 
     
 
@@ -36,7 +42,7 @@ its extension with bin instead.
 
 **See also:** .
 
-# Function File: _number ,errorcode =_ **ENgetcount( countcode)**
+## Function File: _number ,errorcode =_ **ENgetcount( countcode)**
 
     
 
@@ -49,7 +55,7 @@ patterns EN_CURVECOUNT 4 curves EN_CONTROLCOUNT 5
 
 **See also:** .
 
-# Function File: _errormessage ,newerrorcode =_ **ENgeterror( errorcode)**
+## Function File: _errormessage ,newerrorcode =_ **ENgeterror( errorcode)**
 
     
 
@@ -60,7 +66,7 @@ newerrorcode can also be retrieved
 
 **See also:** ENgeterror, ENgetnodevalue, ENsetnodevalue.
 
-# Function File: _flowunits ,errorcode, flowunitsstring =_ **ENgetflowunits()**
+## Function File: _flowunits ,errorcode, flowunitsstring =_ **ENgetflowunits()**
 
     
 
@@ -70,7 +76,7 @@ flowunits is a string with the flow units.
 
 **See also:** .
 
-# Function File: _id ,errorcode =_ **ENgetlinkid( index)**
+## Function File: _id ,errorcode =_ **ENgetlinkid( index)**
 
     
 
@@ -82,7 +88,7 @@ string cell array, in case index is an array errorcode can also be retrieved
 
 **See also:** ENgetlinkid, ENgetlinkvalue, ENsetlinkvalue.
 
-# Function File: _index ,errorcode =_ **ENgetlinkindex( linkid)**
+## Function File: _index ,errorcode =_ **ENgetlinkindex( linkid)**
 
     
 
@@ -96,7 +102,7 @@ link errorcode can also be retrieved
 
 **See also:** ENgetlinkid, ENgetlinkvalue, ENsetlinkvalue.
 
-# Function File: _fromnode ,tonode,errorcode =_ **ENgetlinknodes( id)**
+## Function File: _fromnode ,tonode,errorcode =_ **ENgetlinknodes( id)**
 
     
 
@@ -107,7 +113,7 @@ nodes are retrieved [from,to]=ENgetlinknodes([])
 
 **See also:** ENgetlinkid.
 
-# Function File: _typecode ,errorcode,stype =_ **ENgetlinkvalue( id)**
+## Function File: _typecode ,errorcode,stype =_ **ENgetlinkvalue( id)**
 
     
 
@@ -118,7 +124,7 @@ empty [] and then all links are retrieved: ENgetlinktype([])
 
 **See also:** ENgetlinkid, ENgetlinkvalue, ENsetlinkvalue.
 
-# Function File: _value ,errorcode =_ **ENgetlinkvalue( id,param)**
+## Function File: _value ,errorcode =_ **ENgetlinkvalue( id,param)**
 
     
 
@@ -147,7 +153,7 @@ EN_ENERGY 13 energy expended in kW (Â¿power?)
 
 **See also:** ENgetlinkid, ENgetlinkvalue, ENsetlinkvalue.
 
-# Function File: _id ,errorcode =_ **ENgetnodeid( index)**
+## Function File: _id ,errorcode =_ **ENgetnodeid( index)**
 
     
 
@@ -159,7 +165,7 @@ string cell array, in case index is an array errorcode can also be retrieved
 
 **See also:** ENgetnodeid, ENgetnodevalue, ENsetnodevalue.
 
-# Function File: _index ,errorcode =_ **ENgetnodeindex( nodeid)**
+## Function File: _index ,errorcode =_ **ENgetnodeindex( nodeid)**
 
     
 
@@ -173,7 +179,7 @@ node errorcode can also be retrieved
 
 **See also:** ENgetnodeid, ENgetnodevalue, ENsetnodevalue.
 
-# Function File: _typecode ,errorcode,stype =_ **ENgetnodevalue( id)**
+## Function File: _typecode ,errorcode,stype =_ **ENgetnodevalue( id)**
 
     
 
@@ -184,7 +190,7 @@ be [] and then all nodes are retrieved.
 
 **See also:** ENgetnodeid, ENgetnodevalue, ENsetnodevalue.
 
-# Function File: _[ value,errorcode] =_ **ENgetnodevalue( id,param)**
+## Function File: _[ value,errorcode] =_ **ENgetnodevalue( id,param)**
 
     
 
@@ -220,7 +226,7 @@ param is the parameter to be measured it can be a string or an integer:
 
 **See also:** ENgetnodeid, ENgetnodevalue, ENsetnodevalue.
 
-# Function File: _id ,errorcode =_ **ENgetpatternid( index)**
+## Function File: _id ,errorcode =_ **ENgetpatternid( index)**
 
     
 
@@ -233,7 +239,7 @@ retrieved
 
 **See also:** ENgetpatternid, ENgetpatternvalue, ENsetpatternvalue.
 
-# Function File: _index ,errorcode =_ **ENgetpatternindex( patternid)**
+## Function File: _index ,errorcode =_ **ENgetpatternindex( patternid)**
 
     
 
@@ -247,7 +253,7 @@ pattern errorcode can also be retrieved
 
 **See also:** ENgetpatternid, ENgetpatternvalue, ENsetpatternvalue.
 
-# Function File: _[ len,errorcode] =_ **ENgetpatternlen( id)**
+## Function File: _[ len,errorcode] =_ **ENgetpatternlen( id)**
 
     
 
@@ -261,7 +267,7 @@ ENgetpatternlen ([],10)
 
 **See also:** ENgetnodeid, ENgetpatternlen, ENsetpatternlen.
 
-# Function File: _[ value,errorcode] =_ **ENgetpatternvalue( id,** _period )_
+## Function File: _[ value,errorcode] =_ **ENgetpatternvalue( id,** _period )_
 
     
 
@@ -276,7 +282,7 @@ period is the number of time period in which multiplier wants to be retrieved
 
 **See also:** ENgetnodeid, ENgetpatternvalue, ENsetpatternvalue.
 
-# Function File: _errorcode =_ **ENinitH( flag)**
+## Function File: _errorcode =_ **ENinitH( flag)**
 
     
 
@@ -291,7 +297,7 @@ It returns an error code.
 
 **See also:** ENrunH, ENnextH.
 
-# Function File: _errorcode =_ **ENinitQ( flag)**
+## Function File: _errorcode =_ **ENinitQ( flag)**
 
     
 
@@ -302,7 +308,7 @@ code.
 
 **See also:** ENrunQ, ENnextQ.
 
-# Function File: _codigodeerrorsinimplementar =_ **ENinsertvalve( fileinp,**
+## Function File: _codigodeerrorsinimplementar =_ **ENinsertvalve( fileinp,**
 _idpipe ,typeofvalve,valve_settings,valve_minorlosses)_
 
     
@@ -333,7 +339,7 @@ array, in case index is an array errorcode can also be retrieved.
 
 **See also:** ENgetnodeid, ENgetnodevalue, ENsetnodevalue.
 
-# Function File: _index =_ **ENlinkid2index( cellids,** _id )_
+## Function File: _index =_ **ENlinkid2index( cellids,** _id )_
 
     
 
@@ -349,7 +355,7 @@ vectorized where id would be a string cell array, in case index is an array
 
 **See also:** ENgetlinkid, ENgetlinkvalue, ENsetlinkvalue.
 
-# Function File: _tstep ,errorcode =_ **ENnextH()**
+## Function File: _tstep ,errorcode =_ **ENnextH()**
 
     
 
@@ -360,7 +366,7 @@ retrieved
 
 **See also:** ENnextH.
 
-# Function File: _tstep ,errorcode =_ **ENnextQ()**
+## Function File: _tstep ,errorcode =_ **ENnextQ()**
 
     
 
@@ -371,7 +377,7 @@ errorcode can also be retrieved
 
 **See also:** ENnextQ.
 
-# Function File: _index =_ **ENnodeid2index( cellids,** _id )_
+## Function File: _index =_ **ENnodeid2index( cellids,** _id )_
 
     
 
@@ -388,7 +394,7 @@ cell array, in case index is an array
 
 **See also:** ENgetnodeid, ENgetnodevalue, ENsetnodevalue.
 
-# Function File: _errorcode =_ **ENopenH** _( )_
+## Function File: _errorcode =_ **ENopenH** _( )_
 
     
 
@@ -397,7 +403,7 @@ ENnextH. It returns an error code.
 
 **See also:** ENinitH, ENrunH, ENnextH.
 
-# Function File: _errorcode =_ **ENopenHoginitH( flag)**
+## Function File: _errorcode =_ **ENopenHoginitH( flag)**
 
     
 
@@ -416,7 +422,7 @@ with the initialization returning an empty array as second error code.
 
 **See also:** ENrunH, ENnextH.
 
-# Function File: _errorcode =_ **ENopen** _( fileinp, filereport, filebin).  
+## Function File: _errorcode =_ **ENopen** _( fileinp, filereport, filebin).  
 _
 
     
@@ -430,7 +436,7 @@ changing its extension with bin instead.
 
 **See also:** ENclose.
 
-# Function File: _errorcode =_ **ENopenQ** _( )_
+## Function File: _errorcode =_ **ENopenQ** _( )_
 
     
 
@@ -439,7 +445,7 @@ ENrunQ, ENnextQ. It returns an error code.
 
 **See also:** ENinitQ, ENrunQ, ENnextQ.
 
-# Function File: _errorcode =_ **ENreport** _( )_
+## Function File: _errorcode =_ **ENreport** _( )_
 
     
 
@@ -448,7 +454,7 @@ should be after ENsaveH It returns an error code.
 
 **See also:** ENsaveH.
 
-# Function File: _errorcode =_ **ENresetreport** _( )_
+## Function File: _errorcode =_ **ENresetreport** _( )_
 
     
 
@@ -463,7 +469,7 @@ head loss It returns an error code.
 
 **See also:** ENsaveH.
 
-# Function File: _t ,errorcode =_ **ENrunH()**
+## Function File: _t ,errorcode =_ **ENrunH()**
 
     
 
@@ -472,7 +478,7 @@ simulation time in seconds. errorcode can also be retrieved
 
 **See also:** ENnextH.
 
-# Function File: _t ,errorcode =_ **ENrunQ()**
+## Function File: _t ,errorcode =_ **ENrunQ()**
 
     
 
@@ -483,7 +489,7 @@ retrieved
 
 **See also:** ENnextQ.
 
-# Function File: _errorcode =_ **ENsaveH** _( )_
+## Function File: _errorcode =_ **ENsaveH** _( )_
 
     
 
@@ -494,7 +500,7 @@ code.
 
 **See also:** ENreport.
 
-# Function File: _errorcode =_ **ENsavehydfile** _( filebin)_
+## Function File: _errorcode =_ **ENsavehydfile** _( filebin)_
 
     
 
@@ -503,7 +509,7 @@ Compulsory argument.
 
 **See also:** ENclose.
 
-# Function File: _[ errorcode] =_ **ENsetlinkvalue( id,param,value)**
+## Function File: _[ errorcode] =_ **ENsetlinkvalue( id,param,value)**
 
     
 
@@ -529,7 +535,7 @@ is empty then it should be a vector with one value for each link.
 
 **See also:** ENsetlinkid, ENsetlinkvalue, ENsetlinkvalue.
 
-# Function File: _[ errorcode] =_ **ENsetnodevalue( id,param,value)**
+## Function File: _[ errorcode] =_ **ENsetnodevalue( id,param,value)**
 
     
 
@@ -563,7 +569,7 @@ is empty then it should be a vector with one value for each node..
 
 **See also:** ENsetnodeid, ENsetnodevalue, ENsetnodevalue.
 
-# Function File: _[ errorcode] =_ **ENsetpattern( id,factors)**
+## Function File: _[ errorcode] =_ **ENsetpattern( id,factors)**
 
     
 
@@ -573,7 +579,7 @@ errorcode can also be retrieved Inputs: id is the integer index of the pattern
 
 **See also:** .
 
-# Function File: _[ errorcode] =_ **ENsetpatternvalue( id,period,factor)**
+## Function File: _[ errorcode] =_ **ENsetpatternvalue( id,period,factor)**
 
     
 
@@ -584,7 +590,7 @@ factor we want to set up
 
 **See also:** .
 
-# Function File: _errorcode =_ **ENgetstatusreport( statuslevel)**
+## Function File: _errorcode =_ **ENgetstatusreport( statuslevel)**
 
     
 
@@ -594,7 +600,7 @@ full status reporting Outputs: errorcode can also be retrieved
 
 **See also:** ENsetreport.
 
-# Function File: _errorcode =_ **ENsolveH** _( )_
+## Function File: _errorcode =_ **ENsolveH** _( )_
 
     
 
@@ -604,7 +610,7 @@ ENcloseH, ENopenH. It returns an error code.
 
 **See also:** ENopen, ENreport.
 
-# Function File: _errorcode =_ **ENsolveQ** _( )_
+## Function File: _errorcode =_ **ENsolveQ** _( )_
 
     
 
@@ -615,7 +621,7 @@ ENcloseQ, ENopenQ. It returns an error code.
 **See also:** ENopen, ENreport.
 
 
-# Function File: _id ,errorcode =_ **ENlinkid2index( index)**
+## Function File: _id ,errorcode =_ **ENlinkid2index( index)**
 
     
 
@@ -629,8 +635,11 @@ retrieved
 
 **See also:** ENgetlinkid, ENgetlinkvalue, ENsetlinkvalue.
 
-# examples/example_leakCalc.m
+# Examples
+## examples/example_leakCalc.m
 Example which on the one hand get all nodes with consumption, and on the other
 hand introduce a leak modelled as an emitter in one of the nodes, running the
 simulation and getting time series of the leakage flow rate as well as its max
 and average value
+
+# Instalation and issues
