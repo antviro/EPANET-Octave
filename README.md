@@ -1,7 +1,7 @@
 # Table of contents
-1. [Code description] (#EPANET-Octave-code)
-2. [Examples] (#Examples)
-3. [Instalation and issues] (#Instalation-and-issues)
+1. [Code description](#EPANET-Octave-code)
+2. [Examples](#Examples)
+3. [Instalation and issues](#Instalation-and-issues)
 
 # EPANET-Octave code
 ## Function File: _errorcode =_ **ENcloseH** _( )_
