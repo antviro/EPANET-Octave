@@ -8,6 +8,7 @@ This repository contains a wrapper of the Epanet Toolkit for GNU Octave, in whic
 
 
 # EPANET-Octave code
+
 ## Function File: _errorcode =_ **ENcloseH** _( )_
 
     
@@ -639,6 +640,8 @@ retrieved
 
 **See also:** ENgetlinkid, ENgetlinkvalue, ENsetlinkvalue.
 
+[Come back to TOC](#Table-of-contents)
+
 # Examples
 
 ## examples/example_leakCalc.m
@@ -680,6 +683,8 @@ The script is commented here as tutorial of how to use it.
 ## examples/urbanDMAHydraulicPotential
 
 Here are the scripts of the paper DOI: to be added
+
+[Come back to TOC](#Table-of-contents)
 
 # Instalation and issues
 
@@ -762,3 +767,5 @@ Besides vectorial used, it is planned to add matrix (pattern-time)
 #### Include more checks to avoid errors in the wrapper
 
 For instance, before calling ocENget... detect if argument is not an integer (e.g. a string), and produce an error message instead of sending the wrong argument, which leads to Octave being killed.
+
+[Come back to TOC](#Table-of-contents)
