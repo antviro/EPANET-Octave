@@ -640,7 +640,14 @@ retrieved
 Example which on the one hand get all nodes with consumption, and on the other
 hand introduce a leak modelled as an emitter in one of the nodes, running the
 simulation and getting time series of the leakage flow rate as well as its max
-and average value
+and average value.
+
+
+
+
+
+## examples/urbanDMAHydraulicPotential
+Here are the scripts of the paper DOI: to be added
 
 # Instalation and issues
 
@@ -657,7 +664,7 @@ Download package from github, either using git commands/app or downloading and d
     
     cat /etc/ld.so.conf.d/libc.conf
     
-Its ouptput should include =/usr/local/lib=, for example:
+Its ouptput should include /usr/local/lib for example:
 
     # libc default configuration
     /usr/local/lib
@@ -665,11 +672,11 @@ Its ouptput should include =/usr/local/lib=, for example:
 
 ### Create a folder in /usr/local/lib and copy there the libraries
 
-What out! The following code =$OCTAVE_EPANET_PATH= should be replaced by its position e.g. /home/antonio/epanet-octave
+What out! The following code $OCTAVE_EPANET_PATH should be replaced by its position e.g. /home/antonio/epanet-octave
 
 Alternatively, you can create the shell variable =OCTAVE_EPANET_PATH= by using and instruction like
     
-    ~ OCTAVE_EPANET_PATH=$HOME/Documents/epanet/epanet/epanet-octave~
+    OCTAVE_EPANET_PATH=$HOME/Documents/epanet/epanet/epanet-octave
     
 indicating where is located the program
 
@@ -690,7 +697,7 @@ indicating where is located the program
 
 ### Use it
 
-Program can either be used from folder =$OCTAVE_EPANET_PATH= or better adding such folder to the Octave Path, so that it can be used from any folder.
+Program can either be used from folder $OCTAVE_EPANET_PATH or better adding such folder to the Octave Path, so that it can be used from any folder.
 
 ## Update instructions
 If a new version is available this is the guide of how to update it
@@ -708,12 +715,18 @@ Do this in epanet-octave folder
 
 
 
-## WAITING ENgetpatternvalue ENsetpatternvalue
+## Issues and TODOs
 
-Ademas de uso vectorial, permitir matricial con tiempo
+   There are some bugs in the opening of certain INPs, whose cause has not yet been located, as well as with some valves/nodes labels in which the string are not well converted. As this is using an old version of EPANET ToolKit, this bugs could disappear after running in the updated version, although Epanet TK version has been kept frozen here to avoid any unforeseen change which may affect the project in which this is being used. Once finished, the new version will be tested.
 
-## WAITING ENinsertvalve
+### TODOs
 
-##
-Detectar si lo introducido no es un entero (e.g. string) y dar error sin pasar a
-ocENget... para evitar cuelgue
+#### Update used version of Epanet Toolkit
+
+#### Modifications to ENgetpatternvalue ENsetpatternvalue
+
+Besides vectorial used, it is planned to add matrix (pattern-time)
+
+#### Include more checks to avoid errors in the wrapper
+
+For instance, before calling ocENget... detect if argument is not an integer (e.g. a string), and produce an error message instead of sending the wrong argument, which leads to Octave being killed.
