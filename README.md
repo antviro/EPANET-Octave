@@ -1,7 +1,11 @@
+This repository contains a wrapper of the Epanet Toolkit for GNU Octave, in which the aim has been as being as close as possible to the C library but including vectorial operations, as well as examples of use. Among those examples the folder urbanDMAHydraulicPotential contains the scripts corresponding to the paper DOI: "to be inserted".
+
+
 # Table of contents
 1. [Code description](#EPANET-Octave-code)
 2. [Examples](#Examples)
 3. [Instalation and issues](#Instalation-and-issues)
+
 
 # EPANET-Octave code
 ## Function File: _errorcode =_ **ENcloseH** _( )_
@@ -636,17 +640,45 @@ retrieved
 **See also:** ENgetlinkid, ENgetlinkvalue, ENsetlinkvalue.
 
 # Examples
+
 ## examples/example_leakCalc.m
-Example which on the one hand get all nodes with consumption, and on the other
-hand introduce a leak modelled as an emitter in one of the nodes, running the
-simulation and getting time series of the leakage flow rate as well as its max
-and average value.
 
+Example which on the one hand get all nodes with consumption, and on the other hand introduce a leak modelled as an emitter in one of the nodes. Such leak could model a pipe leak or a fire hydrant for example. Afterwards, the simulation is run getting time series of the leakage flow rate as well as its max and average value.
 
+The script is commented here as tutorial of how to use it.
+
+    Enopen("redM.inp") # we open the system
+    ENopenHoginitH(0)  # we open an initialise the hydraulic system
+    hydrantnode="52";  # node labelled as "52" is where we have the leak or hydrant in this case
+    allNodes=ENgetnodeid([]); # we get an array with all nodes labels sortered by their internal id
+    ihydrantnode=ENnodeid2index(allNodes,"52"); # We get the internal id of the hydrant node
+    demandasbase=ENgetnodevalue([],"EN_BASEDEMAND"); #we get each node base demand
+    nodosconsumo=find(demandasbase>0);    # we ge a list of such nodes whose consumption is not null (supply nodes)
+    tstep=inf;
+    ENsetnodevalue(ihydrantnode,"EN_EMITTER",2.157); #we set the emitter coeficient to 2.157 in the hydrant node, see EPANET manual for more details about equations.
+    ENinitH(10); # We re-initialize flows in the hydraulic system (needed after defining as emitters nodes which were not defined initially as emitter (they had before a non-pressure dependent demand).
+    clear tsimulacion; 
+    clear Qfuga;
+    iT=1;
+    while tstep>0 #while simulation is not finished
+      [tsimulacion(iT),coderr]=ENrunH(); #we run a simulation step
+      Qfuga(iT)=ENgetnodevalue(ihydrantnode,"EN_DEMAND") #we store the flow rate on the node (substract the corresponding with consumption if not null?)
+      tstep=ENnextH(); #we prepare simulation for the next step, if finished tstep would be 0
+      iT = iT+1;
+    end
+    #we get the statistics of the leak flow rate
+    Qmaxfuga=max(Qfuga) 
+    Qmediofuga=mean(Qfuga)
+
+    #We close the hydraulic system and the epanet network
+    ENcloseH();
+    ENclose();
+    
 
 
 
 ## examples/urbanDMAHydraulicPotential
+
 Here are the scripts of the paper DOI: to be added
 
 # Instalation and issues
