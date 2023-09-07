@@ -643,3 +643,77 @@ simulation and getting time series of the leakage flow rate as well as its max
 and average value
 
 # Instalation and issues
+
+
+## INSTALATION
+Instruction assumes GNU/Linux as OS, particularly everything is tested under DEBIAN GNU/Linux. Nevertheless there should work in any other OS where Epanet TK is available, like Ms Windows. Although some of the instructions should be adapted. Alternatively, WSL could be used to run it under the Linux subsystem oficcially available in Ms Windows.
+
+### Checkout/download package (en la carpeta donde lo queremos)
+
+Download package from github, either using git commands/app or downloading and decompressing.
+
+### Comprobar que las librerias dinámicas en /usr/local/lib/ se enlazan
+
+    
+    cat /etc/ld.so.conf.d/libc.conf
+    
+Its ouptput should include =/usr/local/lib=, for example:
+
+    # libc default configuration
+    /usr/local/lib
+
+
+### Create a folder in /usr/local/lib and copy there the libraries
+
+What out! The following code =$OCTAVE_EPANET_PATH= should be replaced by its position e.g. /home/antonio/epanet-octave
+
+Alternatively, you can create the shell variable =OCTAVE_EPANET_PATH= by using and instruction like
+    
+    ~ OCTAVE_EPANET_PATH=$HOME/Documents/epanet/epanet/epanet-octave~
+    
+indicating where is located the program
+
+
+    
+    sudo mkdir /usr/local/lib/epanet-octave
+    sudo ln -s $OCTAVE_EPANET_PATH/*.so* /usr/local/lib/epanet-octave/
+    sudo ldconfig # para actualizar el cache de librerias din a tener en cuenta
+    sudo ldconfig /usr/local/lib/epanet-octave/ #no necesario pero ayuda a detectar fallos
+    
+
+### Within Octave
+
+
+    cd $OCTAVE_EPANET_PATH/private # This can alternatively be done through Octave file browser
+    compile_every_cc
+    
+
+### Use it
+
+Program can either be used from folder =$OCTAVE_EPANET_PATH= or better adding such folder to the Octave Path, so that it can be used from any folder.
+
+## Update instructions
+If a new version is available this is the guide of how to update it
+
+### Update repository
+
+Update the repository with git
+
+### Recompile the oct files from Octave
+
+Do this in epanet-octave folder
+    
+    cd private # This can alternatively be done through Octave file browser
+    compile_every_cc
+
+
+
+## WAITING ENgetpatternvalue ENsetpatternvalue
+
+Ademas de uso vectorial, permitir matricial con tiempo
+
+## WAITING ENinsertvalve
+
+##
+Detectar si lo introducido no es un entero (e.g. string) y dar error sin pasar a
+ocENget... para evitar cuelgue
